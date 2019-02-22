@@ -2,6 +2,8 @@ var express = require("express"),
     bodyParser = require('body-parser');
 var router = express.Router();
 
+var port = process.env.PORT || 3000;
+
 
 
 var path = __dirname + "/views/";
