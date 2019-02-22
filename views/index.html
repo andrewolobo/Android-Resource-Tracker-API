@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Palantir</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <style>
+         #map{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOk-9VTwDkxPSFhODtWM5FrRffRWq1lh8&callback=initMap"></script>
+
+    <body>
+            <div id="map" style="height:100%"></div>
+
+    </body>
+    <script>
+        function initMap() {
+            // The location of Uluru
+            var uluru = {
+                lat: -25.344,
+                lng: 131.036
+            };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), {
+                    zoom: 4,
+                    center: uluru
+                });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+        $(document).on("ready", function (e) {
+            console.log("hello");
+        })
+    </script>
+</body>
+
+</html>
