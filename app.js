@@ -50,6 +50,6 @@ app.use("*", function (req, res) {
     res.json(list);
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
 });

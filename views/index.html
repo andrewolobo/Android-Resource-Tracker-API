@@ -10,8 +10,15 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <style>
-         #map{
+        body,
+        html {
+            height: 100%;
             width: 100%;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -20,27 +27,40 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsohQOYepDtM0VcyKeRmqPS3NZWdHm_mc&callback=initMap"></script>
 
     <body>
-            <div id="map" style="height:500px"></div>
+        <div id="map"></div>
 
     </body>
     <script>
         function initMap() {
-            // The location of Uluru
-            var uluru = {
-                lat: -25.344,
-                lng: 131.036
-            };
-            // The map, centered at Uluru
-            var map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 4,
-                    center: uluru
+            var map;
+            $.get("/listLocations", function (data) {
+                console.log(data)
+
+                var place = {
+                    lat: 0.39573604,
+                    lng: 32.62815958
+                };
+                // The map, centered at Uluru
+                map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 14,
+                        center: place
+                    });
+
+                data.forEach(function (element) {
+                    var i = element.split(",");
+                    var latLang = {
+                        lat: parseFloat(i[0]),
+                        lng: parseFloat(i[1])
+                    };
+                    // The marker, positioned at Uluru
+                    var marker = new google.maps.Marker({
+                        position: latLang,
+                        map: map
+                    });
                 });
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
             });
+
         }
         $(document).on("ready", function (e) {
             console.log("hello");
